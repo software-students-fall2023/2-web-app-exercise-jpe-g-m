@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson import ObjectId
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Connect to MongoDB
 # Connect to MongoDB Atlas
-client = MongoClient("mongodb+srv://admi:sSq4KE8jp6DgusOD@cluster0.35ye0fk.mongodb.net/")
-db = client["SWE"]  
+client = MongoClient(os.environ.get('MONGO_URI'))
+db = client[os.environ.get('MONGO_DBNAME')]  
 pets = db["pets"]
 
 #print out the first document in the pets collection
