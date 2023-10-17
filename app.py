@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
 from bson import ObjectId
 from dotenv import load_dotenv
@@ -8,6 +8,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 # Connect to MongoDB
 # Connect to MongoDB Atlas
@@ -23,8 +24,17 @@ humans = db["humans"]
 
 @app.route('/')
 def index():
-    docs = humans.find({})
-    return render_template('index.html', docs=docs)
+    user_id = session.get('user_id')
+    if not user_id:
+        # Not logged in, redirect to login page
+        return redirect(url_for('login'))
+
+    user_doc = humans.find_one({"_id": ObjectId(user_id)})
+    if not user_doc:
+        # User not found, clear the session and redirect to login
+        session.clear()
+        return redirect(url_for('login'))
+    return render_template('index.html', user_doc=user_doc)
 
 
 
@@ -42,6 +52,27 @@ def edit_user(user_id):
     humans.update_one({"_id": ObjectId(user_id)}, {"$set": {"passw": passw}})
     
     return redirect(url_for('index'))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        passw = request.form.get('passw')
+
+        # Check credentials
+        user = humans.find_one({"username": username, "passw": passw})
+        if user:
+            # Credentials are correct
+            session['user_id'] = str(user['_id'])
+            return redirect(url_for('index'))
+        else:
+            # Invalid credentials
+            return render_template('login.html', error="Invalid username or password")
+    return render_template('login.html')
+
+
+
 
 if __name__ == '__main__':
     PORT = os.getenv('PORT', 5000)
