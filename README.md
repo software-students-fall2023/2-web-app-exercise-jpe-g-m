@@ -30,4 +30,4 @@ SoulPet aims to be a leading platform that intuitively links individuals seeking
 
 ## Task boards
 
-See instructions. Delete this line and place a link to the task boards here.
+https://github.com/orgs/software-students-fall2023/projects/7/views/2
