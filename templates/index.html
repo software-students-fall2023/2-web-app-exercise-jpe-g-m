@@ -7,11 +7,9 @@
 </head>
 <body>
     <h1>home</h1>
-    {% for doc in docs %}
-    <a href="{{ url_for('edit', user_id=doc._id)}}">Edit</a>
+    <a href="{{ url_for('edit', user_id=user_doc._id)}}">Edit</a>
     <p>
-    {{doc.username}} with pass {{ doc.passw }}
+    {{user_doc.username}} with pass {{ user_doc.passw }}
     </p>
-    {%endfor%}
 </body>
 </html>
