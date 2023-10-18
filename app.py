@@ -72,6 +72,14 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    results = []
+    if request.method == 'POST':
+        query = request.form.get('query')
+        results = pets.find({"$text": {"$search": query}})
+    return render_template('search.html', results=results)
+
 
 
 if __name__ == '__main__':
