@@ -14,9 +14,14 @@ app.secret_key = os.urandom(24)
 # Connect to MongoDB Atlas
 client = MongoClient(os.environ.get('MONGO_URI'))
 db = client[os.environ.get('MONGO_DBNAME')]  
+
 pets = db["pets"]
 humans = db["humans"]
 
+pets.create_index([
+    ("breed", "text"),
+    ("color", "text")
+])
 
 #print out the first document in the pets collection
 # print(pets.find_one())
