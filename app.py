@@ -20,12 +20,12 @@ humans = db["humans"]
 
 pets.create_index([
     ("breed", "text"),
-    ("color", "text")
+    ("type", "text")
 ])
 
 #print out the first document in the pets collection
 # print(pets.find_one())
-
+user_id = None
 
 @app.route('/')
 def index():
@@ -69,7 +69,7 @@ def login():
         user = humans.find_one({"username": username, "passw": passw})
         if user:
             # Credentials are correct
-            session['user_id'] = str(user['_id'])
+            session['user_id'] = str(ObjectId(user['_id']))
             return redirect(url_for('index'))
         else:
             # Invalid credentials
@@ -79,13 +79,16 @@ def login():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    user_id = session.get('user_id')
+    user_doc = humans.find_one({"_id": ObjectId(user_id)})
+    liked_pets = user_doc['likedPets']
+    
     results = []
     if request.method == 'POST':
         query = request.form.get('query')
-        results = pets.find({"$text": {"$search": query}})
-    return render_template('search.html', results=results)
-
-
+        results = pets.find({"$text": {"$search": query}, "_id": {"$nin": liked_pets}})
+    return render_template('search.html', results=results,)
+    
 @app.route('/add', methods=['POST'])
 def add():
 
@@ -112,7 +115,11 @@ def add():
         return redirect(url_for('index'))
     return redirect('add.html')
 
-
+@app.route('/like/<pet_id>')
+def like_pet(pet_id):
+    user_id = session.get('user_id')
+    humans.update_one({"_id": ObjectId(user_id)}, {"$addToSet": {"likedPets": ObjectId(pet_id)}})
+    return redirect(url_for('search'))
 
 if __name__ == '__main__':
     PORT = os.getenv('PORT', 5000)

@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Pets</title>
+    <style>
+        .like-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>Search for Pets</h1>
@@ -15,7 +30,11 @@
         <h2>Search Results:</h2>
         <ul>
             {% for pet in results %}
-                <li>{{ pet.breed }} ({{ pet.age }} years) - {{ pet.type }}</li>
+                <li>
+                    {{ pet.name }} ({{ pet.age }} years) - {{pet.breed}} {{ pet.type }}
+                    <!-- Like button for each pet -->
+                    <a href="{{ url_for('like_pet',pet_id=pet._id) }}" class="like-button">Like</a>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}

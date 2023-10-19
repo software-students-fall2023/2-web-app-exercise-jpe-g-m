@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* Centering the content */
+        body {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80vh;
+            position: relative;
+        }
+        /* Positioning the edit link to the top right */
+        .edit-link {
+            position: absolute;
+            top: 100px;
+            right: 50px;
+        }
+        /* Positioning the search link at the bottom center */
+        .search-link {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
-    <h1>home</h1>
-    <a href="{{ url_for('edit', user_id=user_doc._id)}}">Edit</a>
-    <p>
-    {{user_doc.username}} with pass {{ user_doc.passw }}
-    </p>
+    <h1>Hi, {{user_doc.first_name}}</h1>
+    <p>{{user_doc.username}}</p>
+
+    <a href="{{ url_for('edit', user_id=user_doc._id)}}" class="edit-link">Edit</a>
+    <a href="/search" class="search-link">Search pets</a>
 </body>
 </html>
