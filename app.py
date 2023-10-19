@@ -27,7 +27,13 @@ pets.create_index([
 # print(pets.find_one())
 user_id = None
 
+
+
 @app.route('/')
+def landing():
+    return render_template('landing.html')
+
+@app.route('/index')
 def index():
     user_id = session.get('user_id')
     if not user_id:
@@ -89,31 +95,36 @@ def search():
         results = pets.find({"$text": {"$search": query}, "_id": {"$nin": liked_pets}})
     return render_template('search.html', results=results,)
     
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['GET','POST'])
 def add():
+    if request.method == 'POST':
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        address = request.form.get('address')
+        username = request.form.get('username')
+        passw = request.form.get('passw')
 
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    address = request.form.get('address')
-    username = request.form.get('username')
-    passw = request.form.get('passw')
+        user = humans.find_one({"username": username, "passw": passw})
+        print("user::: ",user)
 
-    user = humans.find_one({"username": username, "passw": passw})
+        if (user):
+            # User Already exists
+            return redirect('login.html', error="User already exists, please login")
+        else:
+            # Create New User
+            humans.insert_one({
+                "first_name": first_name,
+                "last_name": last_name,
+                "address": address,
+                "username": username,
+                "passw": passw,
+                "likedPets": []
+                })
+            user = humans.find_one({"username": username, "passw": passw})
 
-    if (user):
-        # User Already exists
-        return render_template('login.html', error="User already exists, please login")
-    else:
-        # Create New User
-        humans.insert({
-            "first_name": first_name,
-            "last_name": last_name,
-            "address": address,
-            "username": username,
-            "passw": passw
-            })
-        return redirect(url_for('index'))
-    return redirect('add.html')
+            session['user_id'] = str(ObjectId(user['_id']))
+            return redirect(url_for('index'))
+    return render_template('add.html')
 
 @app.route('/like/<pet_id>')
 def like_pet(pet_id):
