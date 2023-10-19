@@ -86,6 +86,33 @@ def search():
     return render_template('search.html', results=results)
 
 
+@app.route('/add', methods=['POST'])
+def add():
+
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    address = request.form.get('address')
+    username = request.form.get('username')
+    passw = request.form.get('passw')
+
+    user = humans.find_one({"username": username, "passw": passw})
+
+    if (user):
+        # User Already exists
+        return render_template('login.html', error="User already exists, please login")
+    else:
+        # Create New User
+        humans.insert({
+            "first_name": first_name,
+            "last_name": last_name,
+            "address": address,
+            "username": username,
+            "passw": passw
+            })
+        return redirect(url_for('index'))
+    return redirect('add.html')
+
+
 
 if __name__ == '__main__':
     PORT = os.getenv('PORT', 5000)
