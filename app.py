@@ -12,8 +12,13 @@ app.secret_key = os.urandom(24)
 
 # Connect to MongoDB
 # Connect to MongoDB Atlas
-client = MongoClient(os.environ.get('MONGO_URI'))
-db = client[os.environ.get('MONGO_DBNAME')]  
+
+
+client = MongoClient ('mongodb+srv://admi:sSq4KE8jp6DgusOD@cluster0.35ye0fk.mongodb.net')
+db = client ['SWE']
+
+# client = MongoClient(os.environ.get('MONGO_URI'))
+# db = client[os.environ.get('MONGO_DBNAME')]  
 
 pets = db["pets"]
 humans = db["humans"]
@@ -131,7 +136,6 @@ def like_pet(pet_id):
     user_id = session.get('user_id')
     humans.update_one({"_id": ObjectId(user_id)}, {"$addToSet": {"likedPets": ObjectId(pet_id)}})
     return redirect(url_for('search'))
-
 
 @app.route('/liked', methods=['GET'])
 def liked_pets():
