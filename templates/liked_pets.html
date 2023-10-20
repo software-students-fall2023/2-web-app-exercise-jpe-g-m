@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Liked Pets</h1>
+    {% if liked_pets %}
+        <ul>
+            {% for pet in liked_pets %}
+                <li>
+                    {{ pet.name }} ({{ pet.age }} years) - {{pet.breed}} {{ pet.type }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't liked any pets yet!</p>
+    {% endif %}
+    <a href="/search">Back to Search</a>
+</body>
+</html>

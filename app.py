@@ -132,6 +132,16 @@ def like_pet(pet_id):
     humans.update_one({"_id": ObjectId(user_id)}, {"$addToSet": {"likedPets": ObjectId(pet_id)}})
     return redirect(url_for('search'))
 
+
+@app.route('/liked', methods=['GET'])
+def liked_pets():
+    user_id = session.get('user_id')
+    user_doc = humans.find_one({"_id": ObjectId(user_id)})
+    liked_pets_ids = user_doc['likedPets']
+    liked_pets_list = pets.find({"_id": {"$in": liked_pets_ids}})
+    return render_template('liked_pets.html', liked_pets=liked_pets_list)
+
+
 if __name__ == '__main__':
     PORT = os.getenv('PORT', 5000)
     app.run(debug=True, port=PORT) 
