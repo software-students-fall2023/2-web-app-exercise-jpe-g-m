@@ -27,6 +27,13 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        /* Positioning the liked pets link to the right of the search link */
+        .liked-link {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            padding-left: 100px; /* Adjust this value to position the link as desired */
+        }
     </style>
 </head>
 <body>
@@ -35,5 +42,6 @@
 
     <a href="{{ url_for('edit', user_id=user_doc._id)}}" class="edit-link">Edit</a>
     <a href="/search" class="search-link">Search pets</a>
+    <a href="/liked" class="liked-link">Liked pets</a>
 </body>
 </html>
