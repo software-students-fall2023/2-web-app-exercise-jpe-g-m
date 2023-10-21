@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, flash, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
 from bson import ObjectId
 from dotenv import load_dotenv
@@ -130,6 +130,40 @@ def add():
             session['user_id'] = str(ObjectId(user['_id']))
             return redirect(url_for('index'))
     return render_template('add.html')
+
+@app.route('/delete_account')
+def delete_account():
+    user_id = session.get('user_id')
+    if not user_id:
+        # Not logged in, redirect to login page
+        return redirect(url_for('login.html'))
+
+    # Render a confirmation page before actual deletion
+    return render_template('delete_account.html')
+
+@app.route('/confirm_delete', methods=['POST'])
+def confirm_delete():
+    user_id = session.get('user_id')
+    if not user_id:
+        # Not logged in, redirect to login page
+        return redirect(url_for('login.html'))
+
+    try:
+        # Actually delete the user's data from the database
+        humans.delete_one({"_id": ObjectId(user_id)})
+
+        # Clear the user session and other data
+        session.pop('user_id', None)
+        # if you stored anything else in session, clear it here
+
+        flash('Your account has been deleted.', 'success')
+        return redirect(url_for('landing.html'))  # or wherever you want to redirect after deletion
+
+    except Exception as e:
+        # Log the error for debugging
+        print(str(e))
+        flash('There was a problem deleting your account.', 'error')
+        return redirect(url_for('delete_account'))
 
 @app.route('/like/<pet_id>')
 def like_pet(pet_id):
