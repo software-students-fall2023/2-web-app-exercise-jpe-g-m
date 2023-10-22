@@ -2,6 +2,26 @@
 
 A little exercise to build a web application following an agile development process. See the [instructions](instructions.md) for more detail.
 
+## Instructions
+1. **Setup environment variables**:
+    - Rename `.env.example` to `.env`.
+    - Fill in the necessary values in `.env`.
+
+2. **Build the Docker image**:
+    ```bash
+    docker build -t app .
+    ```
+
+3. **Run the Docker container**:
+    - Make sure Docker is running.
+    - Start your application:
+    ```bash
+    docker run -ti --rm -p 5000:5000 --env-file .env app
+    ```
+
+4. **Access the application**:
+    - Open your browser and navigate to `http://127.0.0.1:5000`.
+
 ## Product vision statement
 
 SoulPet aims to be a leading platform that intuitively links individuals seeking emotional companionship with the perfect emotional support animal, seamlessly bridging the space between solitude and unwavering affection.
