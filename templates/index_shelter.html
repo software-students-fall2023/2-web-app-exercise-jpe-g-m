@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | SoulPet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Using a more modern font */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80vh;
+            position: relative;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Styling for links */
+        .edit-link,
+        .add-link,
+        .login-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            color: white;
+        }
+
+        .edit-link {
+            background-color: #007BFF;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .edit-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Positioning the search link at the bottom center */
+        .add-link {
+            background-color: #28a745;
+            position: absolute;
+            bottom: 80px; /* Adjusted for spacing */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .add-link:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Styling and positioning the login link at the bottom center */
+        .login-link {
+            background-color: #FF5722;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .login-link:hover {
+            background-color: #E64A19;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome, {{user_doc.first_name}}</h1>
+    <p>Username: {{user_doc.username}}</p>
+
+    <a href="{{ url_for('edit', user_id=user_doc._id)}}" class="edit-link">Edit Profile</a>
+    <a href="/add_pets" class="add-link">Add Pets</a>
+    <a href="/login" class="login-link">logout</a>
+</body>
+
+</html>
