@@ -20,6 +20,7 @@ app.secret_key = os.urandom(24)
 client = MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
 db = client[os.getenv('MONGO_DBNAME')]  
 
+
 pets = db["pets"]
 humans = db["humans"]
 shelters = db["shelters"]
@@ -196,7 +197,6 @@ def add_pets():
                 })
         return redirect(url_for('index_shelter'))
     return render_template('add_pets.html')
-
 
 @app.route('/delete_account')
 def delete_account():
