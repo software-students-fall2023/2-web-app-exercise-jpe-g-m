@@ -5,7 +5,7 @@ A little exercise to build a web application following an agile development proc
 ## Instructions
 1. **Setup environment variables**:
     - Rename `.env.example` to `.env`.
-    - Fill in the necessary values in `.env`.
+    - Fill in the necessary values in `.env`. DB_NAME and DB_URI
 
 2. **Build the Docker image**:
     ```bash
