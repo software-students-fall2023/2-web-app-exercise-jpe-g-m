@@ -72,24 +72,38 @@ def index_shelter():
 @app.route('/edit/<user_id>')
 def edit(user_id):
     doc = humans.find_one({"_id": ObjectId(user_id)})
-    return render_template('edit.html', doc=doc) # render the edit template
+    if not doc:
+        doc = shelters.find_one({"_id": ObjectId(user_id)})
+
+    if doc:
+        return render_template('edit.html', doc=doc)
+
 
 @app.route('/edit/<user_id>', methods=['POST'])
 def edit_user(user_id):
     # Get the new values from the form
     username = request.form.get('username')
     passw = request.form.get('passw')
-    
-    # Update the database with the new values
+
+    # Prepare the update data
     update_data = {}
     if username:
         update_data["username"] = username
     if passw:
         update_data["passw"] = passw
+
+    # Check if the user is in the humans collection
+    if humans.find_one({"_id": ObjectId(user_id)}):
+        humans.update_one({"_id": ObjectId(user_id)}, {"$set": update_data})
+        return redirect(url_for('index'))
+
+    # Else, check if the user is in the shelters collection
+    elif shelters.find_one({"_id": ObjectId(user_id)}):
+        shelters.update_one({"_id": ObjectId(user_id)}, {"$set": update_data})
+        return redirect(url_for('index_shelter'))
+
     
-    humans.update_one({"_id": ObjectId(user_id)}, {"$set": update_data})
-    
-    return redirect(url_for('index'))
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
