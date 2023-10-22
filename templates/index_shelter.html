@@ -27,8 +27,8 @@
 
         /* Styling for links */
         .edit-link,
-        .search-link,
-        .liked-link {
+        .add-link,
+        .login-link {
             display: inline-block;
             padding: 10px 20px;
             margin: 10px;
@@ -50,7 +50,7 @@
         }
 
         /* Positioning the search link at the bottom center */
-        .search-link {
+        .add-link {
             background-color: #28a745;
             position: absolute;
             bottom: 80px; /* Adjusted for spacing */
@@ -58,12 +58,12 @@
             transform: translateX(-50%);
         }
 
-        .search-link:hover {
+        .add-link:hover {
             background-color: #1e7e34;
         }
 
-        /* Styling and positioning the liked link at the bottom center */
-        .liked-link {
+        /* Styling and positioning the login link at the bottom center */
+        .login-link {
             background-color: #FF5722;
             position: absolute;
             bottom: 10px;
@@ -71,7 +71,7 @@
             transform: translateX(-50%);
         }
 
-        .liked-link:hover {
+        .login-link:hover {
             background-color: #E64A19;
         }
     </style>
@@ -82,8 +82,8 @@
     <p>Username: {{user_doc.username}}</p>
 
     <a href="{{ url_for('edit', user_id=user_doc._id)}}" class="edit-link">Edit Profile</a>
-    <a href="/search" class="search-link">Search for Pets</a>
-    <a href="/liked" class="liked-link">View Liked Pets</a>
+    <a href="/add_pets" class="add-link">Add Pets</a>
+    <a href="/login" class="login-link">logout</a>
 </body>
 
 </html>
