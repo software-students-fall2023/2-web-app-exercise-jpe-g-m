@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Edit User</title>
     <style>
         body {
@@ -79,6 +80,19 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">SoulPet</a>
+        <ul>
+            <li><a href="{{ url_for('landing')}}">Home</a></li>
+            <li><a href="{{ url_for('index')}}">Profile</a></li>
+            <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
+            <li><a href="{{ url_for('search')}}">Search</a></li>
+            <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
+            <li><a href="{{ url_for('login')}}">Logout</a></li>
+        </ul>
+    </nav>
+
     <div class="edit-container">
         <h1>Edit User</h1>
         <form action="{{ url_for('edit_user', user_id=doc._id) }}" method="post">

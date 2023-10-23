@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Login to SoulPet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Base Styles */
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f4f4;
             margin: 0;
         }
 
-        .add-container {
-            background-color: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+        a {
+            transition: color 0.3s;
+            text-decoration: none;
         }
 
-        h1 {
-            margin-bottom: 20px;
+        /* Login Container Styles */
+        .login-container {
+            max-width: 340px;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            margin: 60px auto;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         input[type="text"], input[type="password"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
         }
 
         input[type="submit"] {
@@ -45,10 +57,11 @@
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
             border-radius: 4px;
             font-size: 16px;
+            font-weight: 600;
             transition: background-color 0.3s;
         }
 
@@ -58,11 +71,26 @@
 
         p {
             color: red;
-            font-weight: bold;
+            margin-top: 15px;
         }
     </style>
 </head>
+
 <body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#" class="logo">SoulPet</a>
+    <ul>
+        <li><a href="{{ url_for('landing')}}">Home</a></li>
+        <li><a href="{{ url_for('index')}}">Profile</a></li>
+        <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
+        <li><a href="{{ url_for('search')}}">Search</a></li>
+        <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+    </ul>
+</nav>
+
     <div class="add-container">
         <h1>New User</h1>
         <form action="/add" method="POST">

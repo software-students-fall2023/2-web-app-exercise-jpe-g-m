@@ -1,0 +1,91 @@
+/* Base Styles */
+body, html {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    height: 100%;
+}
+
+a {
+    transition: all 0.3s ease;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #5c6bc0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #5c6bc0;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+}
+
+nav ul li a:hover {
+    background: #5c6bc0;
+    color: #fff;
+}
+
+/* Content Styles */
+header, section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+header {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+section#features {
+    background-color: #f7f7f7;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+section#testimonials {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
