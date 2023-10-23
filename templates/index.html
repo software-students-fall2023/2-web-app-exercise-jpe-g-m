@@ -65,18 +65,25 @@
         }
 
         /* Link styles */
-        .edit-link, .search-link, .liked-link {
+        .edit-link, 
+        .search-link {
             display: inline-block;
             padding: 10px 20px;
             margin: 10px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s;
             color: white;
         }
 
         .edit-link {
             background-color: #007BFF;
+            display: block;
+            margin: 10px auto;
+            position: absolute;
+            bottom: 350px; /* Adjusted for spacing */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .edit-link:hover {
@@ -88,6 +95,10 @@
             background-color: #28a745;
             display: block;
             margin: 10px auto;
+            position: absolute;
+            bottom: 250px; /* Adjusted for spacing */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .search-link:hover {
@@ -95,16 +106,6 @@
             transform: scale(1.05);
         }
 
-        .liked-link {
-            background-color: #FF5722;
-            display: block;
-            margin: 10px auto;
-        }
-
-        .liked-link:hover {
-            background-color: #E64A19;
-            transform: scale(1.05);
-        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -127,12 +128,8 @@
     <nav>
         <a href="#" class="logo">SoulPet</a>
         <ul>
-            <li><a href="{{ url_for('landing')}}">Home</a></li>
-            <li><a href="{{ url_for('index')}}">Profile</a></li>
-            <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
-            <li><a href="{{ url_for('search')}}">Search</a></li>
             <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
-            <li><a href="{{ url_for('login')}}">Logout</a></li>
+            <li><a href="{{ url_for('landing')}}">Sign Out</a></li>
         </ul>
     </nav>
 
@@ -141,7 +138,6 @@
 
     <a href="{{ url_for('edit', user_id=user_doc._id)}}" class="edit-link">Edit Profile</a>
     <a href="/search" class="search-link">Search for Pets</a>
-    <a href="/liked" class="liked-link">View Liked Pets</a>
 </body>
 
 </html>

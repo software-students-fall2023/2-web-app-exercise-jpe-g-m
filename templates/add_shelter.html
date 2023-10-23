@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liked Petst</title>
+    <title>Register Shelter to SoulPet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
@@ -21,8 +21,8 @@
             text-decoration: none;
         }
 
-        /* Liked Pets Container Styles */
-        .liked_pets-container {
+        /* Add Shelter Container Styles */
+        .add_shelter-container {
             max-width: 340px;
             background-color: white;
             padding: 30px 40px;
@@ -82,23 +82,31 @@
   <nav>
     <a href="#" class="logo">SoulPet</a>
     <ul>
-        <li><a href="{{ url_for('index')}}">Home</a></li>
-        <li><a href="{{ url_for('search')}}">Search</a></li>
+        <li><a href="{{ url_for('landing')}}">Cancel</a></li>
     </ul>
 </nav>
 
-    <h1>Your Liked Pets</h1>
-    {% if liked_pets %}
-        <ul>
-            {% for pet in liked_pets %}
-                <li>
-                    {{ pet.name }} ({{ pet.age }} years) - {{pet.breed}} {{ pet.type }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You haven't liked any pets yet!</p>
-    {% endif %}
-    
+    <div class="add_shelter-container">
+        <h1>New Shelter</h1>
+        <form action="/add_shelter" method="POST">
+
+            <label for="company">Company:</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="address">Location:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="username">New Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="passw"> New Password:</label>
+            <input type="password" id="passw" name="passw" required>
+
+            <input type="submit" value="Add">
+        </form>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>
