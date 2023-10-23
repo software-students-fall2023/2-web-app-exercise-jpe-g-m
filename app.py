@@ -14,11 +14,11 @@ app.secret_key = os.urandom(24)
 # Connect to MongoDB Atlas
 
 #default connection string
-client = MongoClient ('mongodb+srv://admi:sSq4KE8jp6DgusOD@cluster0.35ye0fk.mongodb.net')
-db = client ['SWE']
+#client = MongoClient ('mongodb+srv://admi:sSq4KE8jp6DgusOD@cluster0.35ye0fk.mongodb.net')
+#db = client ['SWE']
 
-#client = MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
-#db = client[os.getenv('MONGO_DBNAME')]  
+client = MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
+db = client[os.getenv('MONGO_DBNAME')]  
 
 
 pets = db["pets"]
