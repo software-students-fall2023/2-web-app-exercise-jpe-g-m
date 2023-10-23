@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard | SoulPet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
-        /* Using a more modern font */
+
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
@@ -78,6 +79,19 @@
 </head>
 
 <body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#" class="logo">SoulPet</a>
+    <ul>
+        <li><a href="{{ url_for('landing')}}">Home</a></li>
+        <li><a href="{{ url_for('index')}}">Profile</a></li>
+        <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
+        <li><a href="{{ url_for('search')}}">Search</a></li>
+        <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+    </ul>
+</nav>
     <h1>Welcome, {{user_doc.first_name}}</h1>
     <p>Username: {{user_doc.username}}</p>
 

@@ -6,78 +6,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard | SoulPet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
     <style>
-        /* Using a more modern font */
         body {
             font-family: 'Poppins', sans-serif;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 80vh;
-            position: relative;
             background-color: #f5f5f5;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         h1 {
             color: #333;
+            margin-top: 40px;
+            text-align: center;
         }
 
-        /* Styling for links */
-        .edit-link,
-        .search-link,
-        .liked-link {
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: #5964e0;
+        }
+
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: #f3f4f6;
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ffffff;
+            color: #fff;
+        }
+
+        /* Link styles */
+        .edit-link, .search-link, .liked-link {
             display: inline-block;
             padding: 10px 20px;
             margin: 10px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             color: white;
         }
 
         .edit-link {
             background-color: #007BFF;
-            position: absolute;
-            top: 10px;
-            right: 10px;
         }
 
         .edit-link:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
-        /* Positioning the search link at the bottom center */
         .search-link {
             background-color: #28a745;
-            position: absolute;
-            bottom: 80px; /* Adjusted for spacing */
-            left: 50%;
-            transform: translateX(-50%);
+            display: block;
+            margin: 10px auto;
         }
 
         .search-link:hover {
             background-color: #1e7e34;
+            transform: scale(1.05);
         }
 
-        /* Styling and positioning the liked link at the bottom center */
         .liked-link {
             background-color: #FF5722;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            display: block;
+            margin: 10px auto;
         }
 
         .liked-link:hover {
             background-color: #E64A19;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">SoulPet</a>
+        <ul>
+            <li><a href="{{ url_for('landing')}}">Home</a></li>
+            <li><a href="{{ url_for('index')}}">Profile</a></li>
+            <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
+            <li><a href="{{ url_for('search')}}">Search</a></li>
+            <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
+            <li><a href="{{ url_for('login')}}">Logout</a></li>
+        </ul>
+    </nav>
+
     <h1>Welcome, {{user_doc.first_name}}</h1>
     <p>Username: {{user_doc.username}}</p>
 

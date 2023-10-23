@@ -6,139 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to SoulPet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Base Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f3f4f6;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-        }
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-        header {
-            background-color: #5964e0;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 24px;
-        }
-
-        a {
-            display: inline-block;
-            background-color: #5964e0;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            margin: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        a:hover {
-            background-color: #434bc9;
-            transform: translateY(-3px);
-        }
-
-        /* Intro Section */
-        #intro {
-            text-align: center;
-            margin: 50px 0;
-        }
-
-        /* Features Section */
-        #features {
-            background-color: #ffffff;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .feature {
-            margin: 30px 0;
-        }
-
-        /* Testimonials Section */
-        #testimonials {
-            background-color: #e9eaf7;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        blockquote {
-            font-style: italic;
-            margin: 20px auto;
-            max-width: 500px;
-        }
-
-        blockquote cite {
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-            font-style: normal;
-            color: #4a4a4a;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #5964e0;
-            color: #f3f4f6;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-    </style>
-</head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">SoulPet</a>
+        <ul>
+            <li><a href="{{ url_for('landing')}}">Home</a></li>
+            <li><a href="{{ url_for('index')}}">Profile</a></li>
+            <li><a href="{{ url_for('login')}}">Login</a></li>
+        </ul>
+    </nav>
+
+        <!-- Image Banner -->
+    <!-- <div style="text-align: center; margin-top: 20px;">
+        <img src="{{ url_for('static', filename='images/landing_page.webp') }}" alt="SoulPet" style="max-width: 100%; border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+    </div> -->
+
+    <!-- Content -->
     <header>
         SoulPet - Find Your Emotional Companion
     </header>
     <section id="intro">
         <p>SoulPet aims to be a leading platform that intuitively links individuals seeking emotional companionship with the perfect emotional support animal, seamlessly bridging the space between solitude and unwavering affection.</p>
-        <a href="{{ url_for('login')}}">Login</a>
-        <a href="{{ url_for('add')}}">Sign up</a>
     </section>
 
     <!-- Features Section -->
     <section id="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature">
-                <h3>Perfect Match</h3>
-                <p>Our advanced algorithm ensures you find the emotional support animal that complements your personality.</p>
-            </div>
-            <div class="feature">
-                <h3>Trusted Profiles</h3>
-                <p>All animals on the platform are verified and safe. Trust your future companion with confidence.</p>
-            </div>
-            <div class="feature">
-                <h3>Community Engagement</h3>
-                <p>Join a community of like-minded individuals who share experiences and insights about their emotional support animals.</p>
-            </div>
+        <h2>Key Features</h2>
+        <div class="feature">
+            <h3>Perfect Match</h3>
+            <p>Our advanced algorithm ensures you find the emotional support animal that complements your personality.</p>
+        </div>
+        <div class="feature">
+            <h3>Trusted Profiles</h3>
+            <p>All animals on the platform are verified and safe. Trust your future companion with confidence.</p>
+        </div>
+        <div class="feature">
+            <h3>Community Engagement</h3>
+            <p>Join a community of like-minded individuals who share experiences and insights about their emotional support animals.</p>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials">
-        <div class="container">
-            <h2>What Our Users Say</h2>
-            <blockquote>
-                "Finding my emotional support cat through SoulPet has been a life-changing experience. The match was perfect!"
-                <cite>- Alex J.</cite>
-            </blockquote>
-            <blockquote>
-                "The community here is supportive and full of insights. Highly recommend SoulPet to anyone looking for a companion."
-                <cite>- Morgan L.</cite>
-            </blockquote>
-        </div>
+        <h2>What Our Users Say</h2>
+        <blockquote>
+            "Finding my emotional support cat through SoulPet has been a life-changing experience. The match was perfect!"
+            <cite>- Alex J.</cite>
+        </blockquote>
+        <blockquote>
+            "The community here is supportive and full of insights. Highly recommend SoulPet to anyone looking for a companion."
+            <cite>- Morgan L.</cite>
+        </blockquote>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 SoulPet | Bringing Souls Together</p>
-        </div>
-    </footer>
 </body>
 
 </html>
