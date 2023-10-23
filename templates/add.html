@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to SoulPet</title>
+    <title>Sign Up for SoulPet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
@@ -21,8 +21,8 @@
             text-decoration: none;
         }
 
-        /* Login Container Styles */
-        .login-container {
+        /* Add User Container Styles */
+        .add-container {
             max-width: 340px;
             background-color: white;
             padding: 30px 40px;
@@ -82,12 +82,7 @@
   <nav>
     <a href="#" class="logo">SoulPet</a>
     <ul>
-        <li><a href="{{ url_for('landing')}}">Home</a></li>
-        <li><a href="{{ url_for('index')}}">Profile</a></li>
-        <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
-        <li><a href="{{ url_for('search')}}">Search</a></li>
-        <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
-        <li><a href="{{ url_for('login')}}">Login</a></li>
+        <li><a href="{{ url_for('landing')}}">Cancel</a></li>
     </ul>
 </nav>
 

@@ -14,7 +14,7 @@
             padding-top: 60px; /* Space for the navigation bar */
         }
 
-        .add-container {
+        .add_pets-container {
             max-width: 380px;
             background-color: white;
             padding: 30px 40px;
@@ -73,17 +73,13 @@
     <nav>
         <a href="#" class="logo">SoulPet</a>
         <ul>
-            <li><a href="{{ url_for('landing')}}">Home</a></li>
-            <li><a href="{{ url_for('index')}}">Profile</a></li>
-            <li><a href="{{ url_for('add_pets')}}">Add Pet</a></li>
-            <li><a href="{{ url_for('search')}}">Search</a></li>
-            <li><a href="{{ url_for('liked_pets')}}">Liked Pets</a></li>
-            <li><a href="{{ url_for('login')}}">Logout</a></li>
+            <li><a href="{{ url_for('index_shelter')}}">Cancel</a></li>
+            
         </ul>
     </nav>
     
     <!-- Add Pet Container -->
-    <div class="add-container">
+    <div class="add_pets-container">
         <h1>New Pet</h1>
         <form action="/add_pets" method="POST">
             <label for="name">Pet Name:</label>

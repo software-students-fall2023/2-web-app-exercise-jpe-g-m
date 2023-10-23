@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liked Petst</title>
+    <title>Pet List</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
@@ -21,8 +21,8 @@
             text-decoration: none;
         }
 
-        /* Liked Pets Container Styles */
-        .liked_pets-container {
+        /* Pet List Container Styles */
+        .pets_list-container {
             max-width: 340px;
             background-color: white;
             padding: 30px 40px;
@@ -82,23 +82,21 @@
   <nav>
     <a href="#" class="logo">SoulPet</a>
     <ul>
-        <li><a href="{{ url_for('index')}}">Home</a></li>
-        <li><a href="{{ url_for('search')}}">Search</a></li>
+        <li><a href="{{ url_for('index_shelter')}}">Home</a></li>
     </ul>
 </nav>
 
-    <h1>Your Liked Pets</h1>
-    {% if liked_pets %}
+    <h1>Your Shelter's Pets</h1>
+    {% if added_pets %}
         <ul>
-            {% for pet in liked_pets %}
+            {% for pet in added_pets %}
                 <li>
                     {{ pet.name }} ({{ pet.age }} years) - {{pet.breed}} {{ pet.type }}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>You haven't liked any pets yet!</p>
+        <p>No Pets Registered yet!</p>
     {% endif %}
-    
 </body>
 </html>
