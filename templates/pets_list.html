@@ -87,9 +87,9 @@
 </nav>
 
     <h1>Your Shelter's Pets</h1>
-    {% if added_pets %}
+    {% if pets_list %}
         <ul>
-            {% for pet in added_pets %}
+            {% for pet in pets_list %}
                 <li>
                     {{ pet.name }} ({{ pet.age }} years) - {{pet.breed}} {{ pet.type }}
                 </li>
@@ -98,5 +98,6 @@
     {% else %}
         <p>No Pets Registered yet!</p>
     {% endif %}
+
 </body>
 </html>

@@ -4,68 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Add Pet</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding-top: 60px; /* Space for the navigation bar */
-        }
-
-        .add_pets-container {
-            max-width: 380px;
-            background-color: white;
-            padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            margin: 60px auto;
-        }
-
-        h1 {
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        p {
-            color: red;
-            font-weight: bold;
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
@@ -74,32 +15,33 @@
         <a href="#" class="logo">SoulPet</a>
         <ul>
             <li><a href="{{ url_for('index_shelter')}}">Cancel</a></li>
-            
         </ul>
     </nav>
-    
+
     <!-- Add Pet Container -->
-    <div class="add_pets-container">
-        <h1>New Pet</h1>
-        <form action="/add_pets" method="POST">
-            <label for="name">Pet Name:</label>
-            <input type="text" id="name" name="name" required>
+    <section style="padding: 50px 0; text-align: center;">
+        <div class="add_pets-container" style="max-width: 380px; background-color: #fff; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); margin: 0 auto;">
+            <h1>New Pet</h1>
+            <form action="/add_pets" method="POST" style="text-align: left;">
+                <label for="name">Pet Name:</label>
+                <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
 
-            <label for="age">Age:</label>
-            <input type="text" id="age" name="age" required>
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
 
-            <label for="breed">Breed:</label>
-            <input type="text" id="breed" name="breed" required>
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
 
-            <label for="type">Type:</label>
-            <input type="text" id="type" name="type" required>
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
 
-            <input type="submit" value="Add">
-        </form>
-        {% if error %}
-            <p>{{ error }}</p>
-        {% endif %}
-    </div>
+                <input type="submit" value="Add" style="width: 100%; background-color: #5c6bc0; color: white; border: none; padding: 12px; cursor: pointer; border-radius: 4px; font-size: 16px; font-weight: 600; transition: background-color 0.3s;">
+            </form>
+            {% if error %}
+                <p style="color: red; font-weight: bold;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </section>
 </body>
 
 </html>

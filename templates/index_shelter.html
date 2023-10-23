@@ -5,142 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelter Dashboard | SoulPet</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            color: #333;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-
-        p {
-            text-align: center;
-            color: #555;
-            margin-bottom: 40px;
-        }
-
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 50px;
-            background-color: #5964e0;
-        }
-
-        nav .logo {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 15px;
-        }
-
-        nav ul li a {
-            color: #f3f4f6;
-            text-decoration: none;
-            padding: 5px 15px;
-            border-radius: 15px;
-            transition: background-color 0.3s;
-        }
-
-        nav ul li a:hover {
-            background-color: #ffffff;
-            color: #fff;
-        }
-
-
-        /* Styling for links */
-        .edit_shelter-link,
-        .add_pets-link {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            color: white;
-        }
-
-        .edit_shelter-link {
-            background-color: #007BFF;
-            display: block;
-            margin: 10px auto;
-            position: absolute;
-            bottom: 350px; /* Adjusted for spacing */
-            left: 50%;
-            transform: translateX(-50%);
-           
-        }
-
-        .edit_shelter-link:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        /* Positioning the search link at the bottom center */
-        .add_pets-link {
-            background-color: #28a745;
-            display: block;
-            margin: 10px auto;
-            position: absolute;
-            bottom: 250px; /* Adjusted for spacing */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .add_pets-link:hover {
-            background-color: #1e7e34;
-            transform: scale(1.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        
-    </style>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">SoulPet</a>
+        <ul>
+            <li><a href="{{ url_for('added_pets')}}">Registered Pets</a></li>
+            <li><a href="{{ url_for('landing')}}">Sign Out</a></li>
+        </ul>
+    </nav>
 
-  <!-- Navigation Bar -->
-  <nav>
-    <a href="#" class="logo">SoulPet</a>
-    <ul>
-        <li><a href="{{ url_for('added_pets')}}">Registered Pets</a></li>
-        <li><a href="{{ url_for('landing')}}">Sign Out</a></li>
-    </ul>
-</nav>
-    <h1>Welcome!</h1>
-    <p>Username: {{user_doc.username}}</p>
+    <!-- Welcome Section -->
+    <section style="text-align: center; margin: 70px 0; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);">
+        <h1>Welcome!</h1>
+        <p>Username: {{user_doc.username}}</p>
+    </section>
 
-    <a href="{{ url_for('edit_shelter', user_id=user_doc._id)}}" class="edit_shelter-link">Edit Shelter</a>
-    <a href="/add_pets" class="add_pets-link">Register Pet</a>
-</body>
-
+    <!-- Links Section -->
+    <section style="text-align: center; margin: 30px 0;">
+        <a href="{{ url_for('edit_shelter', user_id=user_doc._id)}}" class="edit_shelter-link" style="background-color: #5c6bc0; display: inline-block; padding: 8px 16px; margin: 10px 20px; text-decoration: none; border-radius: 20px; font-weight: 500; color: white; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Edit Shelter</a>
+        
+        <a href="/add_pets" class="add_pets-link" style="background-color: #28a745; display: inline-block; padding: 8px 16px; margin: 10px 20px; text-decoration: none; border-radius: 20px; font-weight: 500; color: white; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Register Pet</a>
+    </section>
 </html>

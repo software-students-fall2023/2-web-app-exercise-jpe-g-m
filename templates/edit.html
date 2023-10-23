@@ -1,84 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Edit User</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .edit-container {
-            background-color: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        a.delete-btn {
-            display: block;
-            width: 100%;
-            background-color: #FF0000; 
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        a.delete-btn:hover {
-            background-color: #cc0000;
-        }
-
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav>
@@ -89,21 +19,20 @@
         </ul>
     </nav>
 
-    <div class="edit-container">
-        <h1>Edit User</h1>
-        <form action="{{ url_for('edit_user', user_id=doc._id) }}" method="post">
-            <label for="username">New Username:</label>
-            <input type="text" id="username" name="username" required>
-        
-            <label for="passw">New Password:</label>
-            <input type="password" id="passw" name="passw" required>
-        
-            <input type="submit" value="Update">
-        </form>
-        
-    
-        <a href="/delete_account" class="delete-btn">Delete Account</a>
-
-    </div>
+    <!-- Edit User Container -->
+    <section style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #fafafa;">
+        <div class="edit-container" style="background-color: #fff; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); max-width: 400px;">
+            <h1>Edit User</h1>
+            <form action="{{ url_for('edit_user', user_id=doc._id) }}" method="post" style="text-align: left;">
+                <label for="username">New Username:</label>
+                <input type="text" id="username" name="username" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                <label for="passw">New Password:</label>
+                <input type="password" id="passw" name="passw" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                <input type="submit" value="Update" style="background-color: #5c6bc0; color: white; border-radius: 4px; font-weight: 600; transition: background-color 0.3s; margin-bottom: 20px;">
+            </form>
+            <a href="/delete_account" class="delete-btn" style="background-color: #FF5722; color: white; border-radius: 4px; font-weight: 600; transition: background-color 0.3s;">Delete Account</a>
+        </div>
+    </section>
 </body>
+
 </html>

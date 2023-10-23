@@ -301,6 +301,24 @@ def liked_pets():
 
 
 
+# @app.route('/add_pets', methods=['GET','POST'])
+# def add_pets():
+#     if request.method == 'POST':
+#         name = request.form.get('name')
+#         age = request.form.get('age')
+#         breed = request.form.get('breed')
+#         type = request.form.get('type')
+
+#         # Create New pet
+#         pets.insert_one({
+#                 "name": name,
+#                 "age": age,
+#                 "breed": breed,
+#                 "type": type,
+#                 })
+#         return redirect(url_for('index_shelter'))
+#     return render_template('add_pets.html')
+
 @app.route('/add_pets', methods=['GET','POST'])
 def add_pets():
     if request.method == 'POST':
@@ -308,26 +326,43 @@ def add_pets():
         age = request.form.get('age')
         breed = request.form.get('breed')
         type = request.form.get('type')
+        user_id = session.get('user_id')
 
-        # Create New pet
-        pets.insert_one({
-                "name": name,
-                "age": age,
-                "breed": breed,
-                "type": type,
-                })
+        new_pet = {
+            "name": name,
+            "age": age,
+            "breed": breed,
+            "type": type,
+            "shelter_id": ObjectId(user_id)
+        }
+        pets.insert_one(new_pet)
+        
         return redirect(url_for('index_shelter'))
     return render_template('add_pets.html')
 
 
+
+# @app.route('/added_pets', methods=['GET'])
+# def added_pets():
+#     user_id = session.get('user_id')
+#     user_doc = shelters.find_one({"_id": ObjectId(user_id)})
+#     pets_ids = user_doc['pets']
+#     current_pets_list = pets.find({"_id": {"$in": pets_ids}})
+    
+#     print("User ID:", user_id)
+#     print("Pets IDs:", pets_ids)
+#     print("Current Pets List:", current_pets_list)
+
+#     return render_template('pets_list.html', pets_list=current_pets_list)
+
 @app.route('/added_pets', methods=['GET'])
 def added_pets():
     user_id = session.get('user_id')
-    user_doc = shelters.find_one({"_id": ObjectId(user_id)})
-    pets_ids = user_doc['Pets']
-    current_pets_list = pets.find({"_id": {"$in": pets_ids}})
+    
+    # Fetch all pets associated with the logged-in shelter using the shelter_id field
+    current_pets_list = pets.find({"shelter_id": ObjectId(user_id)})
+    
     return render_template('pets_list.html', pets_list=current_pets_list)
-
 
 if __name__ == '__main__':
     PORT = os.getenv('PORT', 5000)
